@@ -18,6 +18,14 @@ def main():
     match choice:
         case "1":
             lib_obj.view_book()
+        case "2":
+            id = input("Enter book's id : ")
+            name = input("Enter name of the book : ")
+            author = input("Enter author of the book : ")
+            lib_obj.add_book(id,name,author) 
+        case "3":
+            book_name = input("Enter name of the book : ")
+            lib_obj.search_book(book_name)     
         case _:
             print("Invalid choice")
 
