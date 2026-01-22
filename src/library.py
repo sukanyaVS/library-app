@@ -1,4 +1,6 @@
 import books
+from exceptions import BookNotFoundError
+from users import Student,Admin
 
 class Library:
     _instance = None
@@ -28,16 +30,29 @@ class Library:
             print("Book not available..")
 
     def issue_book(self,book_name):
+        print("1. Issue Book as Student")
+        print("2. Issue Book as Admin")
+
+        choice = input("Enter choice: ")
+
+        if choice == "1":
+         user = Student()
+        elif choice == "2":
+         user = Admin()
+        else:
+         print("Invalid choice")
+         return
         isFound = self.book_obj.search_book_by_name(book_name)
-        if isFound:
+        if not user.can_issue():
+          print("User not allowed to issue books")
+          return
+        elif isFound:
             self.books_list = list(filter(lambda book: book[1].lower() != book_name.lower(), self.books_list))
             print("Book issued successfully")
         else:
-            print("Book not available")
+            raise BookNotFoundError("Book is not available")
 
     def return_book(self,id,name,author):
         self.books_list.append((id,name,author))
         print("Successfully returned..")
         print(self.books_list)
-
-

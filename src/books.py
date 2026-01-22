@@ -29,6 +29,5 @@ class Book():
             if name == book[1].lower():
                 isFound = True
                 break
-            else:
-                isFound = False
+        
         return isFound        

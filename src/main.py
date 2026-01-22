@@ -1,4 +1,5 @@
 from library import Library
+from exceptions import BookNotFoundError
 
 def main():
     print("Welcome!")
@@ -27,7 +28,10 @@ def main():
             lib_obj.search_book(book_name)
         case "4":
             book_name = input("Enter the book's name to borrow : ")
-            lib_obj.issue_book(book_name) 
+            try:
+             lib_obj.issue_book(book_name)
+            except BookNotFoundError as e:
+             print(e)
         case "5":
             id = input("Enter book id: ")
             name = input("Enter book name: ")
