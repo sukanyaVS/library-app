@@ -1,4 +1,4 @@
-import library
+from library import Library
 
 def main():
     print("Welcome!")
@@ -9,11 +9,10 @@ def main():
     print("4. Borrow Book")
     print("5. Return Book")
     print("6. Register User")
-    print("7. Return Book")
-    print("8. Exit")
+    print("7. Exit")
 
     choice = input("Enter your choice : ")
-    lib_obj = library.Library()
+    lib_obj = Library.get_instance()
 
     match choice:
         case "1":
@@ -25,7 +24,17 @@ def main():
             lib_obj.add_book(id,name,author) 
         case "3":
             book_name = input("Enter name of the book : ")
-            lib_obj.search_book(book_name)     
+            lib_obj.search_book(book_name)
+        case "4":
+            book_name = input("Enter the book's name to borrow : ")
+            lib_obj.issue_book(book_name) 
+        case "5":
+            id = input("Enter book id: ")
+            name = input("Enter book name: ")
+            author = input("Enter author name: ")
+            lib_obj.return_book(id,name,author) 
+        case "6":
+            print("Learn more...Thank you")       
         case _:
             print("Invalid choice")
 
